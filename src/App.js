@@ -23,7 +23,7 @@ function App() {
     });
 
     try {
-      axios.post(`${process.env.DAO_ENDPOINT}/api/v1/cars/addcar`, {
+      axios.post(`${process.env.REACT_APP_DAO_ENDPOINT}/api/v1/cars/addcar`, {
         sku,
         model,
         name,
@@ -43,10 +43,11 @@ function App() {
   };
 
   useEffect(() => {
+    console.log(process.env.REACT_APP_DAO_ENDPOINT);
     const getCars = async () => {
       try {
 
-        axios.get(`${process.env.DAO_ENDPOINT}/api/v1/cars/allcars`)
+        axios.get(`${process.env.REACT_APP_DAO_ENDPOINT}/api/v1/cars/allcars`)
           .then(res => {
             console.log(res.data)
             setSales(res.data);
@@ -80,7 +81,7 @@ function App() {
           flexDirection: 'column',
           alignItems: 'center',
         }}>
-          <label>SKU:</label>
+          <label>SKU: </label>
           <input required type="text" value={sku} onChange={(e) => setSKU(e.target.value)} />
           <label>Model:</label>
           <input required type="text" value={model} onChange={(e) => setModel(e.target.value)} />
